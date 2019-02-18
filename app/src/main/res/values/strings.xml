@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Eye Tracking</string>
+    <string name="Button">EyeTracking</string>
 </resources>
