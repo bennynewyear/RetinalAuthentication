@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <org.opencv.android.JavaCameraView
-        android:id="@+id/java_camera_view"
+    <org.opencv.android.JavaCamera2View
+        android:id="@+id/java_camera2_view"
         android:layout_width="408dp"
         android:layout_height="735dp"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-4dp" />
+        tools:layout_editor_absoluteY="-4dp"
+        tools:ignore="MissingConstraints" />
 </android.support.constraint.ConstraintLayout>
