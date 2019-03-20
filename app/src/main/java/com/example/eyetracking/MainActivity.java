@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     private CascadeClassifier cascadeClassifier;
     private Mat newimage;
     private int absoluteFaceSize;
+    private int absoluteEyeSize;
     private int ffcameraid;
     Mat mat;
 
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // initializes camera for viewing
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -142,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     public void onCameraViewStarted(int width, int height) {
         newimage = new Mat(height, width, CvType.CV_8UC4);
         absoluteFaceSize = (int) (height * 0.2);
+        absoluteEyeSize = (int) (height * 0.04);
     }
 
     @Override
@@ -151,16 +153,29 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
 
     @Override
     public Mat onCameraFrame(Mat inputFrame) {
-        Core.flip(inputFrame,inputFrame,1);
-        Imgproc.cvtColor(inputFrame, newimage, Imgproc.COLOR_RGB2BGR);
+        Core.flip(inputFrame,inputFrame,-1);                        // flips the camera to be upright, but not mirrored
+        Imgproc.cvtColor(inputFrame, newimage, Imgproc.COLOR_RGB2BGR);      // fixes blue screen
         MatOfRect faces = new MatOfRect();
-        if (cascadeClassifier != null) {
+        Mat eye = new Mat();
+        MatOfRect eyes = new MatOfRect();
+        if (cascadeClassifier != null) {                // detect faces with classifier
             cascadeClassifier.detectMultiScale(newimage, faces, 1.1, 2, 2,
                     new Size(absoluteFaceSize, absoluteFaceSize), new Size());
         }
         Rect[] facesArray = faces.toArray();
-        for (int i = 0; i < facesArray.length; i++) {
+        Rect[] eyesArray = eyes.toArray();
+        for (int i = 0; i < facesArray.length; i++) {   // draw rectangle around detected faces
             Imgproc.rectangle(inputFrame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0, 255), 3);
+
+        /*
+            //cascadeClassifier.detectMultiScale(eye, eyes, 1.1, 2, 0, new Size( 30, 30), new Size());
+            cascadeClassifier.detectMultiScale(newimage, eyes, 1.1, 2, 2, new Size(absoluteEyeSize, absoluteEyeSize), new Size());
+
+            for (int j = 0; j < eyesArray.length; j++) {
+                Imgproc.rectangle(inputFrame, eyesArray[i].tl(), eyesArray[i].br(), new Scalar(0, 255, 0, 255), 1);
+            }
+
+        */
         }
         return inputFrame;
     }
