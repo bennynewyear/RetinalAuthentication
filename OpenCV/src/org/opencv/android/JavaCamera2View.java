@@ -278,7 +278,7 @@ public class JavaCamera2View extends CameraBridgeViewBase {
             if (mPreviewSize.getWidth() == bestWidth && mPreviewSize.getHeight() == bestHeight)
                 return false;
             else {
-                mPreviewSize = new android.util.Size(bestWidth, bestHeight);
+                mPreviewSize = new android.util.Size(1280, 780);
                 return true;
             }
         } catch (CameraAccessException e) {
