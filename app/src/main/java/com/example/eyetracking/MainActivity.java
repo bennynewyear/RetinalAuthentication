@@ -107,9 +107,9 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
 
     private void initializeOpenCVDependencies(){
         try {
-            InputStream is = getResources().openRawResource(R.raw.lbpcascade_frontalface);
+            InputStream is = getResources().openRawResource(R.raw.haarcascade_eye);
             File cascadeDir = getDir("cascade", Context.MODE_APPEND);
-            File mCascadeFile = new File(cascadeDir, "lbpcascade_frontalface.xml");
+            File mCascadeFile = new File(cascadeDir, "haarcascade_eye.xml");
             FileOutputStream os = new FileOutputStream(mCascadeFile);
             byte[] buffer = new byte[4096];
             int bytesRead;
