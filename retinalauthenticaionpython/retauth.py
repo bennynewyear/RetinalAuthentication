@@ -17,10 +17,10 @@ def main():
     eye_cascade = cv2.CascadeClassifier('opencv-master\data\haarcascades\haarcascade_eye.xml')
 
     cap = cv2.VideoCapture(0)
-
+###
     cv2.namedWindow("Pattern drawing")
     cv2.setMouseCallback("Pattern drawing", mouse_drawing)
-
+###
     while 1:
         ret, img = cap.read()
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
