@@ -8,6 +8,8 @@ Pre-requisites:
 * Mobile device with IR camera (ie. Galaxy S7)
 
 ### Setup
+Ensure that the opencv-master folder is in the same directory as that of the Python script
+
 Push the application from Android Studio onto a supported phone with a built-in IR camera.
 
 OR
