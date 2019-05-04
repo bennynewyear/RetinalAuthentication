@@ -19,6 +19,12 @@ Download the Python script onto any directory on your computer and run the scrip
 ### Issues
 * Current iteration does not accurately detect retinas 
 
+### Helper Programs
+Button_Authentication.py
+* Purpose: Provide a method of retinal eye authentication by allowing the user to input a password sequence through covering their eye over points on the GUI for 5 seconds to confirm their input than compare their password against the current password
+* How to use: Run the program with Python and hover your mouse cursor over each button for 5 seconds, once you have hovered over the button for 5 seconds move it off and the program will accept it as input. Once a sequence has been inputted hit the 'Authenticate' button to test against the current password
+* State: Currently in a fully functioning testing state
+
 ### Future works
 * Integrate all applications into one singular application
 * Fine-tune retinal detection capabilities
